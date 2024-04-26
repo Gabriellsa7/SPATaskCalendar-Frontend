@@ -1,3 +1,15 @@
 import styled from "styled-components";
 
-export const Container = styled.section``;
+export const Container = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+`;
+
+export const SectionIconTitle = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const Title = styled.h1``;

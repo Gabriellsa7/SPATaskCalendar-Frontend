@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export const Container = styled.main`
+export const Container = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  margin: 15px 0 10px 15px;
+  margin-left: 15px;
   gap: 30px;
 `;
 
@@ -17,7 +17,7 @@ export const CalendarSection = styled.section`
   align-items: center;
   justify-content: space-between;
   padding-left: 15px;
-  width: 20%;
+  /* width: 20%; */
 `;
 
 export const IconSection = styled.div`

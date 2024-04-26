@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.main`
   display: flex;
   height: 100vh;
+  width: 100vw;
   flex: 1;
   background: #e5e5e5;
 `;
@@ -14,12 +15,16 @@ export const IconSection = styled.section`
 
 export const RightSection = styled.section`
   display: flex;
-  flex: 1;
+  flex: 4;
   flex-direction: column;
   gap: 50px;
-  width: 60%;
 `;
 
 export const LeftSection = styled.section`
-  width: 40%;
+  flex: 1;
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  gap: 50px;
+  height: 100%;
 `;

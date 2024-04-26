@@ -8,14 +8,14 @@ import * as S from "./styles";
 export default function Home() {
   return (
     <S.Container>
-      <S.RightSection>
+      <S.LeftSection>
         <CalendarSection />
         <CategoriesSection />
         <Profile />
-      </S.RightSection>
-      <S.LeftSection>
-        <Today />
       </S.LeftSection>
+      <S.RightSection>
+        <Today />
+      </S.RightSection>
     </S.Container>
   );
 }
