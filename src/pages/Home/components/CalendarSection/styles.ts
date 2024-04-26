@@ -9,7 +9,9 @@ export const Container = styled.main`
   width: 40%;
 `;
 
-export const Title = styled.h1``;
+export const Title = styled.h1`
+  color: #242428;
+`;
 
 export const CalendarSection = styled.section`
   display: flex;

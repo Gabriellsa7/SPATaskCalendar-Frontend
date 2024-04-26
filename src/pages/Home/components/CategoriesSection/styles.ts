@@ -9,7 +9,9 @@ export const Container = styled.main`
   width: 40%;
 `;
 
-export const CategoryTitle = styled.h3``;
+export const CategoryTitle = styled.h3`
+  color: #242428;
+`;
 
 export const CategoriesSection = styled.section`
   display: flex;

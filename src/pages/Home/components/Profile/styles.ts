@@ -3,9 +3,15 @@ import styled from "styled-components";
 export const Container = styled.main`
   display: flex;
   align-items: center;
+  gap: 15px;
+  margin: 15px 0 10px 25px;
 `;
 
-export const Name = styled.span``;
+export const Name = styled.span`
+  font-size: 16px;
+  font-weight: 600;
+  color: #33404a;
+`;
 
 export const Image = styled.img`
   width: 4rem;
