@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const Container = styled.main`
   display: flex;
   align-items: center;
-  gap: 15px;
-  margin: 15px 0 10px 20px;
+  gap: 0.9375rem;
+  margin: 0.9375rem 0 0.625rem 1.25rem;
 `;
 
 export const Name = styled.span`

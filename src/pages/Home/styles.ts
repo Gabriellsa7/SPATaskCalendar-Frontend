@@ -18,7 +18,7 @@ export const RightSection = styled.section`
   flex: 4;
   flex-direction: column;
   background-color: #fff;
-  padding-top: 27px;
+  padding-top: 1.6875rem;
 `;
 
 export const LeftSection = styled.section`
@@ -26,6 +26,6 @@ export const LeftSection = styled.section`
   display: flex;
   align-items: start;
   flex-direction: column;
-  gap: 50px;
-  padding-top: 20px;
+  gap: 3.125rem;
+  padding-top: 1.25rem;
 `;

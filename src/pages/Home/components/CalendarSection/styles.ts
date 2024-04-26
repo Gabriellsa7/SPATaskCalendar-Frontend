@@ -4,9 +4,9 @@ export const Container = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  margin-left: 15px;
+  margin-left: 0.9375rem;
   width: 70%;
-  gap: 10px;
+  gap: 0.625rem;
 `;
 
 export const Title = styled.h1`
@@ -17,8 +17,8 @@ export const CalendarSection = styled.section`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 10px;
-  padding: 15px 20px;
+  margin-top: 0.625rem;
+  padding: 0.9375rem 1.25rem;
   /* width: 20%; */
   &:hover {
     cursor: pointer;
