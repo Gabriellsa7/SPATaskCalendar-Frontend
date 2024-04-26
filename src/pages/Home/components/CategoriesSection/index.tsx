@@ -7,25 +7,22 @@ export default function CategoriesSection() {
       <S.CategoryTitle>Categories</S.CategoryTitle>
       <S.CategoriesSection>
         <S.IconSection>
-          <S.IconText>
-            <I.SlMenu /> Category A
-          </S.IconText>
+          <I.SlMenu size={25} />
+          <S.IconText>Category A</S.IconText>
         </S.IconSection>
         5
       </S.CategoriesSection>
       <S.CategoriesSection>
         <S.IconSection>
-          <S.IconText>
-            <I.SlMenu /> Category B
-          </S.IconText>
+          <I.SlMenu size={25} />
+          <S.IconText>Category B</S.IconText>
         </S.IconSection>
         5
       </S.CategoriesSection>
       <S.CategoriesSection>
         <S.IconSection>
-          <S.IconText>
-            <I.SlMenu /> Category C
-          </S.IconText>
+          <I.SlMenu size={25} />
+          <S.IconText>Category C</S.IconText>
         </S.IconSection>
         5
       </S.CategoriesSection>
