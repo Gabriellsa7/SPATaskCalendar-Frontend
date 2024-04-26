@@ -5,8 +5,8 @@ export const Container = styled.section`
   flex-direction: column;
   justify-content: space-around;
   margin-left: 15px;
-  width: 60%;
-  gap: 40px;
+  width: 70%;
+  gap: 10px;
 `;
 
 export const CategoryTitle = styled.h3`
@@ -17,9 +17,13 @@ export const CategoriesSection = styled.section`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-left: 15px;
-  gap: 34px;
-  /* width: 20%; */
+  margin-top: 10px;
+  padding: 15px 20px;
+  &:hover {
+    cursor: pointer;
+    background-color: #bababa;
+    border-radius: 10px;
+  }
 `;
 
 export const IconSection = styled.div`
