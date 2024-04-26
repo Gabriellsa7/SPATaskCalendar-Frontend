@@ -4,7 +4,7 @@ export const Container = styled.main`
   display: flex;
   align-items: center;
   gap: 15px;
-  margin: 15px 0 10px 25px;
+  margin: 15px 0 10px 20px;
 `;
 
 export const Name = styled.span`
@@ -15,4 +15,6 @@ export const Name = styled.span`
 
 export const Image = styled.img`
   width: 4rem;
+  border: 2px solid green;
+  border-radius: 50%;
 `;
