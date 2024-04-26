@@ -3,9 +3,9 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./assets/pages/Home/index.tsx";
+import Home from "./pages/Home/index.tsx";
 import { ThemeProvider } from "styled-components";
-import Theme, { Global } from "./assets/styles/styles.ts";
+import Theme, { Global } from "./styles/styles.ts";
 
 const router = createBrowserRouter([
   {
