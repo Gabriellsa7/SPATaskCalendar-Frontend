@@ -17,6 +17,9 @@ export const RightSection = styled.section`
   flex: 1;
   flex-direction: column;
   gap: 50px;
+  width: 60%;
 `;
 
-export const LeftSection = styled.section``;
+export const LeftSection = styled.section`
+  width: 40%;
+`;

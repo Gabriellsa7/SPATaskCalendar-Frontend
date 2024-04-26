@@ -2,6 +2,7 @@ import CalendarSection from "./components/CalendarSection";
 import CategoriesSection from "./components/CategoriesSection";
 
 import Profile from "./components/Profile";
+import Today from "./components/Today";
 import * as S from "./styles";
 
 export default function Home() {
@@ -12,7 +13,9 @@ export default function Home() {
         <CategoriesSection />
         <Profile />
       </S.RightSection>
-      <S.LeftSection>volta aqui</S.LeftSection>
+      <S.LeftSection>
+        <Today />
+      </S.LeftSection>
     </S.Container>
   );
 }

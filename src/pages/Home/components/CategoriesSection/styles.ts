@@ -6,7 +6,6 @@ export const Container = styled.main`
   justify-content: space-around;
   margin: 15px 0 10px 15px;
   gap: 30px;
-  width: 40%;
 `;
 
 export const CategoryTitle = styled.h3`
@@ -18,7 +17,7 @@ export const CategoriesSection = styled.section`
   align-items: center;
   justify-content: space-between;
   padding-left: 15px;
-  width: 25%;
+  width: 20%;
 `;
 
 export const IconSection = styled.div`
