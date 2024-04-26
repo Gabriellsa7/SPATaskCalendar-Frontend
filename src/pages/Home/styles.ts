@@ -5,6 +5,11 @@ export const Container = styled.main`
   flex: 1;
 `;
 
+export const IconSection = styled.section`
+  display: flex;
+  align-items: center;
+`;
+
 export const Title = styled.h1``;
 
 export const RightSection = styled.section``;
