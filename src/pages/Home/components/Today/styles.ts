@@ -15,6 +15,31 @@ export const SectionIconTitle = styled.div`
 
 export const Title = styled.h1``;
 
-export const SectionInput = styled.div``;
+export const Form = styled.form`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 1.25rem;
+  background-color: #eaeaea;
+  padding: 0.3125rem 0.625rem;
+  border-radius: 8px;
+`;
 
-export const MainInput = styled.input``;
+export const Calendar = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding-right: 1.25rem;
+`;
+
+export const MainInput = styled.input`
+  background-color: transparent;
+  border: none;
+  width: 80%;
+  padding: 0.625rem 0.625rem;
+  outline: none;
+
+  &:hover {
+    outline: none;
+  }
+`;
