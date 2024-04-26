@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.section`
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  padding-left: 30px;
 `;
 
 export const SectionIconTitle = styled.div`

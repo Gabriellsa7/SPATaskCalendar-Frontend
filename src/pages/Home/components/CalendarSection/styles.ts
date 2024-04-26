@@ -5,7 +5,8 @@ export const Container = styled.section`
   flex-direction: column;
   justify-content: space-around;
   margin-left: 15px;
-  gap: 30px;
+  width: 60%;
+  gap: 40px;
 `;
 
 export const Title = styled.h1`
