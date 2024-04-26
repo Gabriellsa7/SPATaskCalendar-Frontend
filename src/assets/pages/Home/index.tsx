@@ -6,11 +6,11 @@ export default function Home() {
   return (
     <S.Container>
       <S.RightSection>
+        <S.Title>Task Calendar</S.Title>
         <CalendarSection />
-      </S.RightSection>
-      <S.LeftSection>
         <CategoriesSection />
-      </S.LeftSection>
+      </S.RightSection>
+      <S.LeftSection></S.LeftSection>
     </S.Container>
   );
 }
