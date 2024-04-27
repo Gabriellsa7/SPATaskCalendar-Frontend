@@ -5,6 +5,7 @@ import { format } from "date-fns";
 import { pt } from "date-fns/locale";
 import ToDoList from "./components/ToDoList";
 import Completed from "./components/Completed";
+import useAddTask from "../../../../hooks/useAddTask";
 
 export default function Today() {
   // Gets today's date
@@ -12,6 +13,18 @@ export default function Today() {
 
   // Formats the date using the desired format with the month in full
   const formattedDate = format(today, "dd MMMM yyyy", { locale: pt });
+
+  const handleTaskAdd = () => {
+    console.log("task added!");
+  };
+
+  const {
+    title,
+    // description,
+    // handleDescriptionChange,
+    handleTitleChange,
+    handleTitleKeyPress,
+  } = useAddTask({ onTaskAdded: handleTaskAdd });
 
   return (
     //Start Connecting the Front and Back
@@ -21,7 +34,12 @@ export default function Today() {
         <S.Title>Today</S.Title>
       </S.SectionIconTitle>
       <S.Form>
-        <S.MainInput placeholder="+ Add a task to the list" />
+        <S.MainInput
+          value={title}
+          onChange={handleTitleChange}
+          onKeyPress={handleTitleKeyPress}
+          placeholder="+ Add a task to the list"
+        />
         <S.Calendar>
           <MdOutlineCalendarToday />
           <p>{formattedDate}</p>

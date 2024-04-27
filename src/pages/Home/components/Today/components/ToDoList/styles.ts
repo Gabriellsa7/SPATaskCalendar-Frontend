@@ -16,7 +16,7 @@ export const Container = styled.section`
 export const Title = styled.p``;
 
 export const SectionToDoList = styled.section`
-  margin: 2rem 3.125rem 2rem 1.5rem;
+  margin: 2rem 2rem 2rem 1.5rem;
 `;
 
 export const ToDoListWrapper = styled.div`
@@ -34,4 +34,10 @@ export const SectionIconText = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
+`;
+
+export const SectionIconDelete = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
 `;

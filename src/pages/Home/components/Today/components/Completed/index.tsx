@@ -1,4 +1,5 @@
 import * as S from "./styles";
+import { FaRegCircleXmark } from "react-icons/fa6";
 import { ImRadioChecked } from "react-icons/im";
 
 export default function Completed() {
@@ -12,70 +13,10 @@ export default function Completed() {
               <ImRadioChecked />
               Task
             </S.SectionIconText>
-            6 de Dec.
-          </S.Task>
-        </S.SectionCompleted>
-        <S.SectionCompleted>
-          <S.Task>
-            <S.SectionIconText>
-              <ImRadioChecked />
-              Task
-            </S.SectionIconText>
-            6 de Dec.
-          </S.Task>
-        </S.SectionCompleted>
-        <S.SectionCompleted>
-          <S.Task>
-            <S.SectionIconText>
-              <ImRadioChecked />
-              Task
-            </S.SectionIconText>
-            6 de Dec.
-          </S.Task>
-        </S.SectionCompleted>
-        <S.SectionCompleted>
-          <S.Task>
-            <S.SectionIconText>
-              <ImRadioChecked />
-              Task
-            </S.SectionIconText>
-            6 de Dec.
-          </S.Task>
-        </S.SectionCompleted>
-        <S.SectionCompleted>
-          <S.Task>
-            <S.SectionIconText>
-              <ImRadioChecked />
-              Task
-            </S.SectionIconText>
-            6 de Dec.
-          </S.Task>
-        </S.SectionCompleted>
-        <S.SectionCompleted>
-          <S.Task>
-            <S.SectionIconText>
-              <ImRadioChecked />
-              Task
-            </S.SectionIconText>
-            6 de Dec.
-          </S.Task>
-        </S.SectionCompleted>
-        <S.SectionCompleted>
-          <S.Task>
-            <S.SectionIconText>
-              <ImRadioChecked />
-              Task
-            </S.SectionIconText>
-            6 de Dec.
-          </S.Task>
-        </S.SectionCompleted>
-        <S.SectionCompleted>
-          <S.Task>
-            <S.SectionIconText>
-              <ImRadioChecked />
-              Task
-            </S.SectionIconText>
-            6 de Dec.
+            <S.SectionIconDelete>
+              6 de Dec.
+              <FaRegCircleXmark />
+            </S.SectionIconDelete>
           </S.Task>
         </S.SectionCompleted>
       </S.CompletedWrapper>
