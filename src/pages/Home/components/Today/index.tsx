@@ -14,6 +14,7 @@ export default function Today() {
   const formattedDate = format(today, "dd MMMM yyyy", { locale: pt });
 
   return (
+    //Start Connecting the Front and Back
     <S.Container>
       <S.SectionIconTitle>
         <TfiMenuAlt />
