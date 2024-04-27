@@ -25,6 +25,11 @@ export const CalendarSection = styled.section`
     background-color: #bababa;
     border-radius: 10px;
   }
+
+  &.selected {
+    background-color: #bababa;
+    border-radius: 10px;
+  }
 `;
 
 export const IconSection = styled.div`

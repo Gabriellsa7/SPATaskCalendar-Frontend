@@ -8,7 +8,7 @@ const useAddTask = ({ onTaskAdded }: AddTaskProps) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  const apiUrl = "http://localhost:3000/api/tasks"; // Coloque aqui a URL do seu servidor
+  const apiUrl = "http://localhost:3000/api/tasks";
 
   const handleTitleKeyPress = async (
     e: React.KeyboardEvent<HTMLInputElement>
