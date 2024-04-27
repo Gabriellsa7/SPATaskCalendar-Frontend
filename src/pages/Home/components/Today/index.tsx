@@ -3,6 +3,7 @@ import { TfiMenuAlt } from "react-icons/tfi";
 import { MdOutlineCalendarToday } from "react-icons/md";
 import { format } from "date-fns";
 import { pt } from "date-fns/locale";
+import ToDoList from "./components/ToDoList";
 
 export default function Today() {
   // Gets today's date
@@ -24,6 +25,7 @@ export default function Today() {
           <p>{formattedDate}</p>
         </S.Calendar>
       </S.Form>
+      <ToDoList />
     </S.Container>
   );
 }
