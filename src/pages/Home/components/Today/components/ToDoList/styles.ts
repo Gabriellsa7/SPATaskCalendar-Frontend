@@ -17,6 +17,9 @@ export const Title = styled.p``;
 
 export const SectionToDoList = styled.section`
   margin: 2rem 2rem 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 `;
 
 export const ToDoListWrapper = styled.div`
@@ -28,6 +31,10 @@ export const Task = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+`;
+
+export const TaskBorderBottom = styled.div`
+  border-bottom: 1px solid gray;
 `;
 
 export const SectionIconText = styled.div`
