@@ -23,7 +23,7 @@ export const SectionToDoList = styled.section`
 `;
 
 export const ToDoListWrapper = styled.div`
-  max-height: 200px;
+  max-height: 12.5rem;
   overflow-y: auto;
 `;
 
@@ -40,16 +40,26 @@ export const TaskBorderBottom = styled.div`
 export const SectionIconText = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
 `;
 
 export const SectionIconDelete = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
+  margin-right: 0.3125rem;
 `;
 
 export const ButtonRemove = styled.button`
+  background: transparent;
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const UncheckedButton = styled.button`
   background: transparent;
   border: none;
 

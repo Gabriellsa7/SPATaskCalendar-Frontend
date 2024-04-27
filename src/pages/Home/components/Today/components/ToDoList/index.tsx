@@ -48,7 +48,10 @@ export default function ToDoList() {
           {tasks.map((task) => (
             <S.Task key={task._id}>
               <S.SectionIconText>
-                <ImRadioUnchecked /> {task.title}
+                <S.UncheckedButton>
+                  <ImRadioUnchecked size={18} />
+                </S.UncheckedButton>
+                {task.title}
               </S.SectionIconText>
               <S.SectionIconDelete>
                 {formatDate(task.created_at)}
