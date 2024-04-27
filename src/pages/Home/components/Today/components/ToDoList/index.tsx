@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import * as S from "./styles";
 import { FaRegCircleXmark } from "react-icons/fa6";
 import { ImRadioUnchecked } from "react-icons/im";
+import useRemoveTask from "../../../../../../hooks/useRemoveTask";
 
 interface Task {
   _id: string;
@@ -14,6 +15,7 @@ interface Task {
 
 export default function ToDoList() {
   const [tasks, setTasks] = useState<Task[]>([]);
+  const { removeTask, success } = useRemoveTask();
 
   useEffect(() => {
     // Request to fetch tasks when loading the component
@@ -22,6 +24,16 @@ export default function ToDoList() {
       .then((data) => setTasks(data))
       .catch((error) => console.error("Erro ao buscar tarefas:", error));
   }, []);
+
+  const handleRemoveTask = (taskId: string) => {
+    removeTask(taskId)
+      .then(() => {
+        // If the removal is successful, this code will update the local state of the tasks
+        setTasks(tasks.filter((task) => task._id !== taskId));
+        console.log(success);
+      })
+      .catch((error) => console.error("Erro ao remover a tarefa:", error));
+  };
 
   const formatDate = (date: Date) => {
     // const options = { day: "2-digit", month: "short" as "2-digit" };
@@ -40,7 +52,7 @@ export default function ToDoList() {
               </S.SectionIconText>
               <S.SectionIconDelete>
                 {formatDate(task.created_at)}
-                <S.ButtonRemove>
+                <S.ButtonRemove onClick={() => handleRemoveTask(task._id)}>
                   <FaRegCircleXmark size={18} />
                 </S.ButtonRemove>
               </S.SectionIconDelete>
