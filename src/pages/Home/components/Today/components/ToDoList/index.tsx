@@ -23,7 +23,7 @@ export default function ToDoList() {
       .then((response) => response.json())
       .then((data) => setTasks(data))
       .catch((error) => console.error("Erro ao buscar tarefas:", error));
-  }, []);
+  }, [tasks]);
 
   const handleRemoveTask = (taskId: string) => {
     removeTask(taskId)
