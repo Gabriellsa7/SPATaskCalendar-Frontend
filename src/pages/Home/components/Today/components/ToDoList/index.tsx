@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import * as S from "./styles";
 import { FaRegCircleXmark } from "react-icons/fa6";
 import { ImRadioUnchecked } from "react-icons/im";
-import { daysToWeeks } from "date-fns/fp";
 
 interface Task {
   _id: string;
@@ -25,7 +24,7 @@ export default function ToDoList() {
   }, []);
 
   const formatDate = (date: Date) => {
-    const options = { day: "2-digit", month: "short" as "2-digit" };
+    // const options = { day: "2-digit", month: "short" as "2-digit" };
     return new Date(date).toLocaleDateString("pt-BR");
   };
 
