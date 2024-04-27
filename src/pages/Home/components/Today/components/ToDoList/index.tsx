@@ -40,7 +40,9 @@ export default function ToDoList() {
               </S.SectionIconText>
               <S.SectionIconDelete>
                 {formatDate(task.created_at)}
-                <FaRegCircleXmark />
+                <S.ButtonRemove>
+                  <FaRegCircleXmark size={18} />
+                </S.ButtonRemove>
               </S.SectionIconDelete>
             </S.Task>
           ))}

@@ -38,7 +38,7 @@ export default function Today() {
           value={title}
           onChange={handleTitleChange}
           onKeyPress={handleTitleKeyPress}
-          placeholder="+ Add a task to the list"
+          placeholder="+ Add a task to the list. Press enter to save"
         />
         <S.Calendar>
           <MdOutlineCalendarToday />

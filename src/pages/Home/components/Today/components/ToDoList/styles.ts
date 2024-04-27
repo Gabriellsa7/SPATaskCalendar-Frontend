@@ -48,3 +48,12 @@ export const SectionIconDelete = styled.div`
   align-items: center;
   gap: 20px;
 `;
+
+export const ButtonRemove = styled.button`
+  background: transparent;
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
