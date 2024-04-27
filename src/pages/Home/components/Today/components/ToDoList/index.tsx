@@ -25,8 +25,8 @@ export default function ToDoList() {
   }, []);
 
   const formatDate = (date: Date) => {
-    const options = { day: "2-digit", month: "short" };
-    return new Date(date).toLocaleDateString("pt-BR", options);
+    const options = { day: "2-digit", month: "short" as "2-digit" };
+    return new Date(date).toLocaleDateString("pt-BR");
   };
 
   return (
