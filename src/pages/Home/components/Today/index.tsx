@@ -4,6 +4,7 @@ import { MdOutlineCalendarToday } from "react-icons/md";
 import { format } from "date-fns";
 import { pt } from "date-fns/locale";
 import ToDoList from "./components/ToDoList";
+import Completed from "./components/Completed";
 
 export default function Today() {
   // Gets today's date
@@ -26,6 +27,7 @@ export default function Today() {
         </S.Calendar>
       </S.Form>
       <ToDoList />
+      <Completed />
     </S.Container>
   );
 }

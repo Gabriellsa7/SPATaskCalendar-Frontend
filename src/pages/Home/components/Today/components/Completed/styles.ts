@@ -15,11 +15,11 @@ export const Container = styled.section`
 
 export const Title = styled.p``;
 
-export const SectionToDoList = styled.section`
+export const SectionCompleted = styled.section`
   margin: 2rem 3.125rem 2rem 1.5rem;
 `;
 
-export const ToDoListWrapper = styled.div`
+export const CompletedWrapper = styled.div`
   max-height: 200px;
   overflow-y: auto;
 `;

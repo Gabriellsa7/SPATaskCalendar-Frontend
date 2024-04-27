@@ -23,6 +23,7 @@ export const Form = styled.form`
   background-color: #eaeaea;
   padding: 0.3125rem 0.625rem;
   border-radius: 8px;
+  height: 100%;
 `;
 
 export const Calendar = styled.div`
