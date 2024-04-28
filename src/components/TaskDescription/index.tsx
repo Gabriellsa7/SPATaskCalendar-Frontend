@@ -33,6 +33,7 @@ export default function TaskDescription() {
   return (
     <S.Container>
       <p>Título da Tarefa: {title}</p>
+      <p>{task?.title}</p>
     </S.Container>
   );
 }
