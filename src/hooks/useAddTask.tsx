@@ -40,6 +40,26 @@ const useAddTask = ({ onTaskAdded }: AddTaskProps) => {
     }
   };
 
+  const addDescription = async (taskId: string) => {
+    try {
+      const response = await fetch(`${apiUrl}/${taskId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ description }),
+      });
+      if (response.ok) {
+        setDescription("");
+        onTaskAdded();
+      } else {
+        console.error("Error adding description:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error adding description:", error);
+    }
+  };
+
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
@@ -56,6 +76,7 @@ const useAddTask = ({ onTaskAdded }: AddTaskProps) => {
     handleTitleKeyPress,
     handleTitleChange,
     handleDescriptionChange,
+    addDescription,
   };
 };
 

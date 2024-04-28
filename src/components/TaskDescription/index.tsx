@@ -1,6 +1,7 @@
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import * as S from "./styles";
 import { useEffect, useState } from "react";
+import useAddTask from "../../hooks/useAddTask";
 
 interface TaskProps {
   _id: string;
@@ -14,8 +15,10 @@ interface TaskProps {
 export default function TaskDescription() {
   const { taskId } = useParams();
   const [task, setTask] = useState<TaskProps | null>(null);
-  const query = new URLSearchParams(useLocation().search);
-  const title = query.get("title");
+  const [isAddingDescription, setIsAddingDescription] = useState(false);
+  const { description, handleDescriptionChange, addDescription } = useAddTask({
+    onTaskAdded: () => {},
+  });
 
   useEffect(() => {
     fetch(`http://localhost:3000/api/tasks/${taskId}`)
@@ -26,14 +29,31 @@ export default function TaskDescription() {
       );
   }, [taskId]);
 
-  // if (!task) {
-  //   return <div>Carregando...</div>;
-  // }
+  const handleAddDescriptionClick = () => {
+    setIsAddingDescription(true);
+  };
+
+  const handleSaveDescriptionClick = () => {
+    addDescription(taskId || "");
+    setIsAddingDescription(false);
+  };
 
   return (
     <S.Container>
-      <p>Título da Tarefa: {title}</p>
-      <p>{task?.title}</p>
+      <S.Title>{task?.title}</S.Title>
+      {isAddingDescription ? (
+        <S.Form>
+          <S.TextArea
+            value={description}
+            onChange={handleDescriptionChange}
+            placeholder="Add a description to the task"
+          />
+          <S.Button onClick={handleSaveDescriptionClick}>Save</S.Button>
+        </S.Form>
+      ) : (
+        <S.Button onClick={handleAddDescriptionClick}>Add Description</S.Button>
+      )}
+      <S.Description>{task?.description}</S.Description>
     </S.Container>
   );
 }

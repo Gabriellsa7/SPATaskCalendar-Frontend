@@ -21,15 +21,15 @@ export const Form = styled.form`
   height: 100%;
 `;
 
-export const Calendar = styled.div`
+export const Description = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
   padding-right: 1.25rem;
 `;
 
-export const MainInput = styled.input`
-  background-color: transparent;
+export const TextArea = styled.textarea`
+  /* background-color: transparent;
   border: none;
   width: 80%;
   padding: 0.625rem 0.625rem;
@@ -37,5 +37,19 @@ export const MainInput = styled.input`
 
   &:hover {
     outline: none;
+  } */
+  width: 100%;
+  height: 100px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  resize: vertical;
+  outline: none;
+
+  &:hover {
+    outline: none;
   }
 `;
+
+export const Button = styled.button``;
