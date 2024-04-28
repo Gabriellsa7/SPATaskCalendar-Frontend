@@ -3,7 +3,7 @@ import * as I from "./mocks";
 import { useEffect, useState } from "react";
 
 export default function CalendarSection() {
-  const [selectedItem, setSelectedItem] = useState("today");
+  const [selectedItem, setSelectedItem] = useState("day");
   const [taskCounts, setTaskCounts] = useState({ day: 0, week: 0, month: 0 });
 
   useEffect(() => {
