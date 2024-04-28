@@ -52,7 +52,9 @@ export default function ToDoList() {
                 <S.UncheckedButton>
                   <ImRadioUnchecked size={18} />
                 </S.UncheckedButton>
-                <Link to={`/task/${task._id}`}>{task.title}</Link>
+                <Link to={`/task/${task._id}`}>
+                  <S.TaskName>{task.title}</S.TaskName>
+                </Link>
               </S.SectionIconText>
               <S.SectionIconDelete>
                 {formatDate(task.created_at)}

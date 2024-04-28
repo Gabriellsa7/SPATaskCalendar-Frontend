@@ -1,9 +1,29 @@
 import * as S from "./styles";
 import * as I from "./mocks";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function CalendarSection() {
   const [selectedItem, setSelectedItem] = useState("today");
+  const [taskCounts, setTaskCounts] = useState({ day: 0, week: 0, month: 0 });
+
+  useEffect(() => {
+    // Função para buscar a quantidade de tarefas para cada período de tempo
+    const fetchTaskCounts = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/api/tasks/count");
+        if (response.ok) {
+          const data = await response.json();
+          setTaskCounts(data);
+        } else {
+          console.error("Failed to fetch task counts");
+        }
+      } catch (error) {
+        console.error("Error fetching task counts:", error);
+      }
+    };
+
+    fetchTaskCounts();
+  }, []);
 
   return (
     <S.Container>
@@ -12,34 +32,34 @@ export default function CalendarSection() {
         <S.Title>Task Calendar</S.Title>
       </S.IconSection>
       <S.CalendarSection
-        className={selectedItem === "today" ? "selected" : ""}
-        onClick={() => setSelectedItem("today")}
+        className={selectedItem === "day" ? "selected" : ""}
+        onClick={() => setSelectedItem("day")}
       >
         <S.IconSection>
           <I.MdOutlineCalendarToday size={25} />
-          <S.IconText>Today</S.IconText>
+          <S.IconText>Day</S.IconText>
         </S.IconSection>
-        3
+        {taskCounts.day}
       </S.CalendarSection>
       <S.CalendarSection
-        className={selectedItem === "tomorrow" ? "selected" : ""}
-        onClick={() => setSelectedItem("tomorrow")}
+        className={selectedItem === "week" ? "selected" : ""}
+        onClick={() => setSelectedItem("week")}
       >
         <S.IconSection>
           <I.LuSunrise size={25} />
-          <S.IconText>Tomorrow</S.IconText>
+          <S.IconText>Week</S.IconText>
         </S.IconSection>
-        2
+        {taskCounts.week}
       </S.CalendarSection>
       <S.CalendarSection
-        className={selectedItem === "next7days" ? "selected" : ""}
-        onClick={() => setSelectedItem("next7days")}
+        className={selectedItem === "month" ? "selected" : ""}
+        onClick={() => setSelectedItem("month")}
       >
         <S.IconSection>
           <I.TbArrowsCross size={25} />
-          <S.IconText>Next 7 days</S.IconText>
+          <S.IconText>Month</S.IconText>
         </S.IconSection>
-        5
+        {taskCounts.month}
       </S.CalendarSection>
     </S.Container>
   );

@@ -15,6 +15,11 @@ export const Container = styled.section`
 
 export const Title = styled.p``;
 
+export const TaskName = styled.p`
+  text-decoration: none;
+  color: black;
+`;
+
 export const SectionToDoList = styled.section`
   margin: 2rem 2rem 2rem 1.5rem;
   display: flex;

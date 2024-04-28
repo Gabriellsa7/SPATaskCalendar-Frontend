@@ -60,6 +60,26 @@ const useAddTask = ({ onTaskAdded }: AddTaskProps) => {
     }
   };
 
+  const editDescription = async (taskId: string, newDescription: string) => {
+    try {
+      const response = await fetch(`${apiUrl}/${taskId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ description: newDescription }), // Passa a nova descrição
+      });
+      if (response.ok) {
+        setDescription(newDescription); // Define a nova descrição no estado local
+        onTaskAdded();
+      } else {
+        console.error("Error editing description:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error editing description:", error);
+    }
+  };
+
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
@@ -77,6 +97,7 @@ const useAddTask = ({ onTaskAdded }: AddTaskProps) => {
     handleTitleChange,
     handleDescriptionChange,
     addDescription,
+    editDescription,
   };
 };
 

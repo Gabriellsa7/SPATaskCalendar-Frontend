@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
-export const Container = styled.section``;
+export const Container = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 30px;
+  margin: 10px 20px;
+`;
 
 export const SectionIconTitle = styled.div`
   display: flex;
@@ -21,7 +27,13 @@ export const Form = styled.form`
   height: 100%;
 `;
 
-export const Description = styled.div`
+export const DescriptionSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
+export const Description = styled.p`
   display: flex;
   align-items: center;
   gap: 5px;
@@ -52,4 +64,18 @@ export const TextArea = styled.textarea`
   }
 `;
 
-export const Button = styled.button``;
+export const Button = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9375rem 1.25rem;
+  border: none;
+  border-radius: 10px;
+  background-color: #c0c0c0;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #dfdfdf;
+    border-radius: 10px;
+  }
+`;
