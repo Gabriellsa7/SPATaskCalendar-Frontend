@@ -3,6 +3,7 @@ import * as S from "./styles";
 import { FaRegCircleXmark } from "react-icons/fa6";
 import { ImRadioUnchecked } from "react-icons/im";
 import useRemoveTask from "../../../../../../hooks/useRemoveTask";
+import { Link } from "react-router-dom";
 
 interface Task {
   _id: string;
@@ -51,7 +52,13 @@ export default function ToDoList() {
                 <S.UncheckedButton>
                   <ImRadioUnchecked size={18} />
                 </S.UncheckedButton>
-                {task.title}
+                <Link
+                  to={`/task/${task._id}?title=${encodeURIComponent(
+                    task.title
+                  )}`}
+                >
+                  {task.title}
+                </Link>
               </S.SectionIconText>
               <S.SectionIconDelete>
                 {formatDate(task.created_at)}

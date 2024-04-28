@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home/index.tsx";
 import { ThemeProvider } from "styled-components";
 import Theme, { Global } from "./styles/styles.ts";
+import TaskDescription from "./components/TaskDescription/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/task/:taskId",
+        element: <TaskDescription />,
       },
     ],
   },
