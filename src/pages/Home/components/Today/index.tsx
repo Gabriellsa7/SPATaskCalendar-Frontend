@@ -1,6 +1,7 @@
 import * as S from "./styles";
 import { TfiMenuAlt } from "react-icons/tfi";
 import { MdOutlineCalendarToday } from "react-icons/md";
+import { IoSearchOutline } from "react-icons/io5";
 import { format } from "date-fns";
 import { pt } from "date-fns/locale";
 import ToDoList from "./components/ToDoList";
@@ -29,10 +30,18 @@ export default function Today() {
   return (
     //Start Connecting the Front and Back
     <S.Container>
-      <S.SectionIconTitle>
-        <TfiMenuAlt />
-        <S.Title>Today</S.Title>
-      </S.SectionIconTitle>
+      <S.SectionTop>
+        <S.SectionIconTitle>
+          <TfiMenuAlt />
+          <S.Title>Day</S.Title>
+        </S.SectionIconTitle>
+        <S.SectionSearch>
+          <S.Search placeholder="Enter the task name" />
+          <S.SectionSearchIcon>
+            <IoSearchOutline />
+          </S.SectionSearchIcon>
+        </S.SectionSearch>
+      </S.SectionTop>
       <S.Form>
         <S.MainInput
           value={title}

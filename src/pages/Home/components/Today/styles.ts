@@ -7,10 +7,38 @@ export const Container = styled.section`
   padding-left: 1.875rem;
 `;
 
+export const SectionTop = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 20px;
+`;
+
 export const SectionIconTitle = styled.div`
   display: flex;
   align-items: center;
   gap: 0.625rem;
+`;
+
+export const SectionSearch = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+`;
+
+export const SectionSearchIcon = styled.div`
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 20px;
+`;
+
+export const Search = styled.input`
+  padding: 8px 15px;
+  border-radius: 8px;
+  outline: none;
+  border: none;
+  background-color: #eaeaea;
 `;
 
 export const Title = styled.h1``;
