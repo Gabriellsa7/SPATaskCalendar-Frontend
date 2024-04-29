@@ -14,31 +14,47 @@ interface TaskProps {
 export default function TaskDescription() {
   const { taskId } = useParams();
   const [task, setTask] = useState<TaskProps | null>(null);
+  const [editingTitle, setEditingTitle] = useState("");
+  const [editingDescription, setEditingDescription] = useState("");
   const [isAddingDescription, setIsAddingDescription] = useState(false);
   const [isAddingTitle, setIsAddingTitle] = useState(false);
   const [isEditingDescription, setIsEditingDescription] = useState(false);
   const [isEditingTitle, setIsEditingTitle] = useState(false);
   const {
-    description,
+    // description,
     handleDescriptionChange,
     addDescription,
     editDescription,
     editTitle,
-    title,
+    // title,
     addTitle,
-    handleTitleChange,
+    // handleTitleChange,
   } = useAddTask({
     onTaskAdded: () => {},
+    initialTitle: task?.title || "",
+    initialDescription: task?.description || "",
   });
 
   useEffect(() => {
     fetch(`http://localhost:3000/api/tasks/${taskId}`)
       .then((response) => response.json())
-      .then((data) => setTask(data))
+      .then((data) => {
+        setTask(data);
+        setEditingTitle(data.title);
+        setEditingDescription(data.description);
+      })
       .catch((error) =>
         console.error("Erro ao buscar os detalhes da tarefa:", error)
       );
   }, [taskId]);
+
+  useEffect(() => {
+    if (task) {
+      handleDescriptionChange({
+        target: { value: task.description },
+      } as React.ChangeEvent<HTMLTextAreaElement>);
+    }
+  }, [task, handleDescriptionChange]);
 
   const handleAddDescriptionClick = () => {
     setIsAddingDescription(true);
@@ -56,7 +72,7 @@ export default function TaskDescription() {
 
   const handleSaveDescriptionClick = () => {
     if (isEditingDescription) {
-      editDescription(taskId || "", description);
+      editDescription(taskId || "", editingDescription);
     } else {
       addDescription(taskId || "");
     }
@@ -66,7 +82,7 @@ export default function TaskDescription() {
 
   const handleSaveTitleClick = () => {
     if (isEditingTitle) {
-      editTitle(taskId || "", title);
+      editTitle(taskId || "", editingTitle);
     } else {
       addTitle(taskId || "");
     }
@@ -82,7 +98,8 @@ export default function TaskDescription() {
           <S.Form>
             <S.Input
               placeholder="Edit Title Task"
-              onChange={handleTitleChange}
+              value={editingTitle}
+              onChange={(e) => setEditingTitle(e.target.value)}
             />
             <S.Button onClick={handleSaveTitleClick}>Save Title</S.Button>
           </S.Form>
@@ -94,8 +111,8 @@ export default function TaskDescription() {
         {isAddingDescription ? (
           <S.Form>
             <S.TextArea
-              value={description}
-              onChange={handleDescriptionChange}
+              value={editingDescription}
+              onChange={(e) => setEditingDescription(e.target.value)}
               placeholder="Add a description to the task"
             />
             <S.Button onClick={handleSaveDescriptionClick}>

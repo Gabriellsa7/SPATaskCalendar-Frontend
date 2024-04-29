@@ -2,11 +2,17 @@ import { useState } from "react";
 
 interface AddTaskProps {
   onTaskAdded: () => void;
+  initialTitle: string;
+  initialDescription: string;
 }
 
-const useAddTask = ({ onTaskAdded }: AddTaskProps) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+const useAddTask = ({
+  onTaskAdded,
+  initialTitle,
+  initialDescription,
+}: AddTaskProps) => {
+  const [title, setTitle] = useState(initialTitle);
+  const [description, setDescription] = useState(initialDescription);
 
   const apiUrl = "http://localhost:3000/api/tasks";
 
@@ -87,7 +93,7 @@ const useAddTask = ({ onTaskAdded }: AddTaskProps) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ description, newDescription }),
+        body: JSON.stringify({ description: newDescription }),
       });
       if (response.ok) {
         setDescription(newDescription);
@@ -110,7 +116,7 @@ const useAddTask = ({ onTaskAdded }: AddTaskProps) => {
         body: JSON.stringify({ title: newTitle }),
       });
       if (response.ok) {
-        setTitle(newTitle);
+        setTitle((prevTitle) => prevTitle + newTitle);
         onTaskAdded();
       } else {
         console.error("Error editing description:", response.statusText);
@@ -121,7 +127,7 @@ const useAddTask = ({ onTaskAdded }: AddTaskProps) => {
   };
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
+    setTitle((prevTitle) => prevTitle + e.target.value);
   };
 
   const handleDescriptionChange = (
