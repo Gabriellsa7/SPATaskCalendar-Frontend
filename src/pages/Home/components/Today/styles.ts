@@ -72,3 +72,14 @@ export const MainInput = styled.input`
     outline: none;
   }
 `;
+
+export const Button = styled.button`
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;

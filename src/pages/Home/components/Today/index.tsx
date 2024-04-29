@@ -7,9 +7,31 @@ import { pt } from "date-fns/locale";
 import ToDoList from "./components/ToDoList";
 import Completed from "./components/Completed";
 import useAddTask from "../../../../hooks/useAddTask";
-// import { useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
+
+export interface Task {
+  _id: string;
+  title: string;
+  description: string;
+  date: Date;
+  created_at: Date;
+  completed: boolean;
+}
 
 export default function Today() {
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [search, setSearch] = useState<string>("");
+
+  const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
+
+  useEffect(() => {
+    // Request to fetch tasks when loading the component
+    fetch("http://localhost:3000/api/tasks")
+      .then((response) => response.json())
+      .then((data) => setTasks(data))
+      .catch((error) => console.error("Erro ao buscar tarefas:", error));
+  }, [tasks]);
+
   // Gets today's date
   const today = new Date();
 
@@ -20,6 +42,34 @@ export default function Today() {
 
   const handleTaskAdd = () => {
     console.log("task added!");
+  };
+
+  const handleSearchInput = (e: ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value.toLowerCase();
+    setSearch(query); // Atualiza o estado 'search' com a entrada de pesquisa do usuário
+    handleSearch(query); // Chama a função handleSearch com a entrada de pesquisa do usuário
+  };
+
+  const handleSearch = (query: string) => {
+    // Modificamos para aceitar um parâmetro 'query'
+    if (query !== "") {
+      const filtered = tasks.filter((task) => {
+        const taskTitle = task.title.toLowerCase();
+        let index = 0;
+        for (let i = 0; i < taskTitle.length; i++) {
+          if (taskTitle[i] === query[index]) {
+            index++;
+          }
+          if (index === query.length) {
+            return true;
+          }
+        }
+        return false;
+      });
+      setFilteredTasks(filtered);
+    } else {
+      setFilteredTasks([]); // Limpar as tarefas filtradas se a pesquisa estiver vazia
+    }
   };
 
   const {
@@ -39,9 +89,14 @@ export default function Today() {
           <S.Title>Day</S.Title>
         </S.SectionIconTitle>
         <S.SectionSearch>
-          <S.Search placeholder="Enter the task name" />
+          <S.Search
+            onChange={handleSearchInput}
+            placeholder="Enter the task name"
+          />
           <S.SectionSearchIcon>
-            <IoSearchOutline size={20} />
+            <S.Button onClick={() => handleSearch(search)}>
+              <IoSearchOutline size={20} />
+            </S.Button>
           </S.SectionSearchIcon>
         </S.SectionSearch>
       </S.SectionTop>
@@ -57,7 +112,7 @@ export default function Today() {
           <p>{formattedDate}</p>
         </S.Calendar>
       </S.Form>
-      <ToDoList />
+      <ToDoList filteredTasks={filteredTasks} />
       <Completed />
     </S.Container>
   );

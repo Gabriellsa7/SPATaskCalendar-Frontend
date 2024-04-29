@@ -16,9 +16,13 @@ export interface Task {
 
 interface ToDoListProps {
   setCompletedTasks?: React.Dispatch<React.SetStateAction<Task[]>>;
+  filteredTasks?: Task[];
 }
 
-export default function ToDoList({ setCompletedTasks }: ToDoListProps) {
+export default function ToDoList({
+  setCompletedTasks,
+  filteredTasks = [],
+}: ToDoListProps) {
   const [tasks, setTasks] = useState<Task[]>([]);
   const { removeTask, success } = useRemoveTask();
 
@@ -70,12 +74,21 @@ export default function ToDoList({ setCompletedTasks }: ToDoListProps) {
     return new Date(date).toLocaleDateString("pt-BR");
   };
 
+  const tasksToDisplay =
+    filteredTasks.length > 0
+      ? tasks.filter((task) =>
+          filteredTasks.some((filter) =>
+            task.title.toLowerCase().startsWith(filter.title.toLowerCase())
+          )
+        )
+      : tasks;
+
   return (
     <S.Container>
       <S.Title>To do List</S.Title>
       <S.ToDoListWrapper>
         <S.SectionToDoList>
-          {tasks.map((task) => (
+          {tasksToDisplay?.map((task) => (
             <S.Task key={task._id}>
               <S.SectionIconText>
                 <S.UncheckedButton
