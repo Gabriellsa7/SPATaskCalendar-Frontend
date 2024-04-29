@@ -31,7 +31,9 @@ export default function ToDoList({
     fetch("http://localhost:3000/api/tasks")
       .then((response) => response.json())
       .then((data) => setTasks(data))
-      .catch((error) => console.error("Erro ao buscar tarefas:", error));
+      .catch((error) =>
+        console.error("Error when searching for tasks:", error)
+      );
   }, [tasks]);
 
   const handleRemoveTask = (taskId: string) => {
@@ -55,7 +57,7 @@ export default function ToDoList({
         ]);
       }
 
-      // Armazenar a tarefa concluída no armazenamento local do navegador
+      // Stores the completed task in the browser's local storage
       const completedTasksFromLocalStorage = JSON.parse(
         localStorage.getItem("completedTasks") || "[]"
       );
@@ -64,7 +66,7 @@ export default function ToDoList({
         JSON.stringify([...completedTasksFromLocalStorage, completedTask])
       );
 
-      // Atualizar o estado das tarefas para remover a tarefa concluída
+      // Updates the status of tasks to remove the completed task
       setTasks((prevTasks) => prevTasks.filter((task) => task._id !== taskId));
     }
   };

@@ -7,7 +7,7 @@ export default function CalendarSection() {
   const [taskCounts, setTaskCounts] = useState({ day: 0, week: 0, month: 0 });
 
   useEffect(() => {
-    // Função para buscar a quantidade de tarefas para cada período de tempo
+    // Function to search for the number of tasks for each period of time
     const fetchTaskCounts = async () => {
       try {
         const response = await fetch("http://localhost:3000/api/tasks/count");

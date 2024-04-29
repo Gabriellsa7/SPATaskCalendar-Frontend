@@ -29,13 +29,13 @@ export default function Today() {
     fetch("http://localhost:3000/api/tasks")
       .then((response) => response.json())
       .then((data) => setTasks(data))
-      .catch((error) => console.error("Erro ao buscar tarefas:", error));
+      .catch((error) =>
+        console.error("Error when searching for tasks:", error)
+      );
   }, [tasks]);
 
   // Gets today's date
   const today = new Date();
-
-  // const [completedTasks, setCompletedTasks] = useState<Task[]>([]);
 
   // Formats the date using the desired format with the month in full
   const formattedDate = format(today, "dd MMMM yyyy", { locale: pt });
@@ -46,12 +46,11 @@ export default function Today() {
 
   const handleSearchInput = (e: ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value.toLowerCase();
-    setSearch(query); // Atualiza o estado 'search' com a entrada de pesquisa do usuário
-    handleSearch(query); // Chama a função handleSearch com a entrada de pesquisa do usuário
+    setSearch(query);
+    handleSearch(query);
   };
 
   const handleSearch = (query: string) => {
-    // Modificamos para aceitar um parâmetro 'query'
     if (query !== "") {
       const filtered = tasks.filter((task) => {
         const taskTitle = task.title.toLowerCase();
@@ -68,7 +67,7 @@ export default function Today() {
       });
       setFilteredTasks(filtered);
     } else {
-      setFilteredTasks([]); // Limpar as tarefas filtradas se a pesquisa estiver vazia
+      setFilteredTasks([]);
     }
   };
 
