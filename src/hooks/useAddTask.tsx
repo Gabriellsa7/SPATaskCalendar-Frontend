@@ -116,7 +116,7 @@ const useAddTask = ({
         body: JSON.stringify({ title: newTitle }),
       });
       if (response.ok) {
-        setTitle((prevTitle) => prevTitle + newTitle);
+        setTitle(newTitle);
         onTaskAdded();
       } else {
         console.error("Error editing description:", response.statusText);
@@ -127,7 +127,7 @@ const useAddTask = ({
   };
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle((prevTitle) => prevTitle + e.target.value);
+    setTitle(e.target.value);
   };
 
   const handleDescriptionChange = (
