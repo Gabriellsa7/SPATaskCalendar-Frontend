@@ -15,12 +15,18 @@ export default function TaskDescription() {
   const { taskId } = useParams();
   const [task, setTask] = useState<TaskProps | null>(null);
   const [isAddingDescription, setIsAddingDescription] = useState(false);
+  const [isAddingTitle, setIsAddingTitle] = useState(false);
   const [isEditingDescription, setIsEditingDescription] = useState(false);
+  const [isEditingTitle, setIsEditingTitle] = useState(false);
   const {
     description,
     handleDescriptionChange,
     addDescription,
     editDescription,
+    editTitle,
+    title,
+    addTitle,
+    handleTitleChange,
   } = useAddTask({
     onTaskAdded: () => {},
   });
@@ -43,6 +49,11 @@ export default function TaskDescription() {
     setIsAddingDescription(true);
   };
 
+  const handleEditTitleClick = () => {
+    setIsEditingTitle(true);
+    setIsAddingTitle(true);
+  };
+
   const handleSaveDescriptionClick = () => {
     if (isEditingDescription) {
       editDescription(taskId || "", description);
@@ -53,9 +64,32 @@ export default function TaskDescription() {
     setIsEditingDescription(false);
   };
 
+  const handleSaveTitleClick = () => {
+    if (isEditingTitle) {
+      editTitle(taskId || "", title);
+    } else {
+      addTitle(taskId || "");
+    }
+    setIsAddingTitle(false);
+    setIsEditingTitle(false);
+  };
+
   return (
     <S.Container>
-      <S.Title>Task Name: {task?.title}</S.Title>
+      <S.SectionIconTitle>
+        <S.Title>Task Name: {task?.title}</S.Title>
+        {isAddingTitle ? (
+          <S.Form>
+            <S.Input
+              placeholder="Edit Title Task"
+              onChange={handleTitleChange}
+            />
+            <S.Button onClick={handleSaveTitleClick}>Save Title</S.Button>
+          </S.Form>
+        ) : (
+          <S.Button onClick={handleEditTitleClick}>Edit Title</S.Button>
+        )}
+      </S.SectionIconTitle>
       <S.DescriptionSection>
         {isAddingDescription ? (
           <S.Form>
@@ -74,7 +108,7 @@ export default function TaskDescription() {
               <p>Add Description</p>
             </S.Button>
             <S.Button onClick={handleEditDescriptionClick}>
-              <p>Edit Description</p>
+              <p>Edit Task</p>
             </S.Button>
           </>
         )}

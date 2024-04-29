@@ -12,6 +12,7 @@ export const SectionIconTitle = styled.div`
   display: flex;
   align-items: center;
   gap: 0.625rem;
+  width: 100%;
 `;
 
 export const Title = styled.h1``;
@@ -38,6 +39,17 @@ export const Description = styled.p`
   align-items: center;
   gap: 5px;
   padding-right: 1.25rem;
+`;
+
+export const Input = styled.input`
+  background-color: transparent;
+  border: none;
+  padding: 0.625rem 0.625rem;
+  outline: none;
+
+  &:hover {
+    outline: none;
+  }
 `;
 
 export const TextArea = styled.textarea`

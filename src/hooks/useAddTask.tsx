@@ -15,11 +15,11 @@ const useAddTask = ({ onTaskAdded }: AddTaskProps) => {
   ) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      AddTask();
+      addTask();
     }
   };
 
-  const AddTask = async () => {
+  const addTask = async () => {
     try {
       const response = await fetch(apiUrl, {
         method: "POST",
@@ -60,6 +60,26 @@ const useAddTask = ({ onTaskAdded }: AddTaskProps) => {
     }
   };
 
+  const addTitle = async (taskId: string) => {
+    try {
+      const response = await fetch(`${apiUrl}/${taskId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ title }),
+      });
+      if (response.ok) {
+        setTitle("");
+        onTaskAdded();
+      } else {
+        console.error("Error adding description:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error adding description:", error);
+    }
+  };
+
   const editDescription = async (taskId: string, newDescription: string) => {
     try {
       const response = await fetch(`${apiUrl}/${taskId}`, {
@@ -67,10 +87,30 @@ const useAddTask = ({ onTaskAdded }: AddTaskProps) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ description: newDescription }), // Passa a nova descrição
+        body: JSON.stringify({ description, newDescription }),
       });
       if (response.ok) {
-        setDescription(newDescription); // Define a nova descrição no estado local
+        setDescription(newDescription);
+        onTaskAdded();
+      } else {
+        console.error("Error editing description:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error editing description:", error);
+    }
+  };
+
+  const editTitle = async (taskId: string, newTitle: string) => {
+    try {
+      const response = await fetch(`${apiUrl}/${taskId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ title: newTitle }),
+      });
+      if (response.ok) {
+        setTitle(newTitle);
         onTaskAdded();
       } else {
         console.error("Error editing description:", response.statusText);
@@ -98,6 +138,8 @@ const useAddTask = ({ onTaskAdded }: AddTaskProps) => {
     handleDescriptionChange,
     addDescription,
     editDescription,
+    editTitle,
+    addTitle,
   };
 };
 

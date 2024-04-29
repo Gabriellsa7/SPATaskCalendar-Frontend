@@ -38,7 +38,7 @@ export default function Today() {
         <S.SectionSearch>
           <S.Search placeholder="Enter the task name" />
           <S.SectionSearchIcon>
-            <IoSearchOutline />
+            <IoSearchOutline size={20} />
           </S.SectionSearchIcon>
         </S.SectionSearch>
       </S.SectionTop>

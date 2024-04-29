@@ -30,7 +30,7 @@ export const SectionSearchIcon = styled.div`
   display: flex;
   align-items: center;
   position: absolute;
-  right: 20px;
+  right: 15px;
 `;
 
 export const Search = styled.input`
