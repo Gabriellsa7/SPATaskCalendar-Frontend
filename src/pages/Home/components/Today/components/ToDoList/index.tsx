@@ -5,16 +5,20 @@ import { ImRadioUnchecked } from "react-icons/im";
 import useRemoveTask from "../../../../../../hooks/useRemoveTask";
 import { Link } from "react-router-dom";
 
-interface Task {
+export interface Task {
   _id: string;
   title: string;
   description: string;
   date: Date;
   created_at: Date;
-  // Adicione outras propriedades conforme necessário
+  completed: boolean;
 }
 
-export default function ToDoList() {
+interface ToDoListProps {
+  setCompletedTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+}
+
+export default function ToDoList({ setCompletedTasks }: ToDoListProps) {
   const [tasks, setTasks] = useState<Task[]>([]);
   const { removeTask, success } = useRemoveTask();
 
@@ -36,6 +40,24 @@ export default function ToDoList() {
       .catch((error) => console.error("Erro ao remover a tarefa:", error));
   };
 
+  const handleTaskCompletion = (taskId: string) => {
+    const completedTaskIndex = tasks.findIndex((task) => task._id === taskId);
+    if (completedTaskIndex !== -1) {
+      const completedTask = tasks[completedTaskIndex];
+      setCompletedTasks((prevCompletedTasks) => [
+        ...prevCompletedTasks,
+        completedTask,
+      ]); // Adiciona o objeto Task dentro de um array
+      removeTask(taskId)
+        .then(() => {
+          // Se a remoção for bem-sucedida, atualiza o estado das tarefas
+          setTasks(tasks.filter((task) => task._id !== taskId));
+          console.log(success);
+        })
+        .catch((error) => console.error("Erro ao remover a tarefa:", error));
+    }
+  };
+
   const formatDate = (date: Date) => {
     // const options = { day: "2-digit", month: "short" as "2-digit" };
     return new Date(date).toLocaleDateString("pt-BR");
@@ -49,7 +71,9 @@ export default function ToDoList() {
           {tasks.map((task) => (
             <S.Task key={task._id}>
               <S.SectionIconText>
-                <S.UncheckedButton>
+                <S.UncheckedButton
+                  onClick={() => handleTaskCompletion(task._id)}
+                >
                   <ImRadioUnchecked size={18} />
                 </S.UncheckedButton>
                 <Link to={`/task/${task._id}`}>
