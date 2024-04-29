@@ -2,8 +2,8 @@ import { useState } from "react";
 
 interface AddTaskProps {
   onTaskAdded: () => void;
-  initialTitle: string;
-  initialDescription: string;
+  initialTitle?: string;
+  initialDescription?: string;
 }
 
 const useAddTask = ({
