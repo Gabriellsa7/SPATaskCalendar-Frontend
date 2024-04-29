@@ -1,8 +1,8 @@
-// import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import * as S from "./styles";
 import { FaRegCircleXmark } from "react-icons/fa6";
 import { ImRadioChecked } from "react-icons/im";
-// import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 interface Task {
   _id: string;
@@ -12,46 +12,52 @@ interface Task {
   created_at: Date;
 }
 
-interface CompletedProps {
-  completedTasks: Task[];
-}
+export default function Completed() {
+  const [completedTasks, setCompletedTasks] = useState<Task[]>([]);
 
-export default function Completed({ completedTasks }: CompletedProps) {
-  // const { taskId } = useParams<{ taskId: string }>();
-  // const [completedTask, setCompletedTask] = useState<Task[]>([]);
+  useEffect(() => {
+    // Loads completed tasks from the browser's local storage when loading the component
+    const completedTasksFromLocalStorage = JSON.parse(
+      localStorage.getItem("completedTasks") || "[]"
+    );
+    setCompletedTasks(completedTasksFromLocalStorage);
+  }, []);
 
-  // useEffect(() => {
-  //   // Fetch the completed task details using taskId
-  //   fetch(`http://localhost:3000/api/tasks/${taskId}`)
-  //     .then((response) => response.json())
-  //     .then((data) => setCompletedTask(data))
-  //     .catch((error) =>
-  //       console.error("Erro ao buscar a tarefa concluída:", error)
-  //     );
-  // }, [taskId]);
+  const handleRemoveTask = (taskId: string) => {
+    // Removes the task from the screen
+    setCompletedTasks((prevCompletedTasks) =>
+      prevCompletedTasks.filter((task) => task._id !== taskId)
+    );
 
-  // const formatDate = (date: Date) => {
-  //   return new Date(date).toLocaleDateString("pt-BR");
-  // };
+    // Updates local storage by removing the task
+    const updatedCompletedTasks = completedTasks.filter(
+      (task) => task._id !== taskId
+    );
+    localStorage.setItem(
+      "completedTasks",
+      JSON.stringify(updatedCompletedTasks)
+    );
+  };
 
-  // if (!completedTask) {
-  //   return <div>Carregando...</div>;
-  // }
   return (
     <S.Container>
       <S.Title>Completed</S.Title>
       <S.CompletedWrapper>
         <S.SectionCompleted>
-          {Array.isArray(completedTasks) ? (
+          {Array.isArray(completedTasks) && completedTasks.length > 0 ? (
             completedTasks.map((task) => (
               <S.Task key={task._id}>
                 <S.SectionIconText>
                   <ImRadioChecked />
-                  <span>{task.title}</span>
+                  <Link to={`/task/${task._id}`}>
+                    <S.TaskName>{task.title}</S.TaskName>
+                  </Link>
                 </S.SectionIconText>
                 <S.SectionIconDelete>
                   {new Date(task.created_at).toLocaleDateString("pt-BR")}
-                  <FaRegCircleXmark />
+                  <S.ButtonRemove onClick={() => handleRemoveTask(task._id)}>
+                    <FaRegCircleXmark size={18} />
+                  </S.ButtonRemove>
                 </S.SectionIconDelete>
               </S.Task>
             ))

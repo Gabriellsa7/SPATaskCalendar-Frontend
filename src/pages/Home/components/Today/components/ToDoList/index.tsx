@@ -15,7 +15,7 @@ export interface Task {
 }
 
 interface ToDoListProps {
-  setCompletedTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+  setCompletedTasks?: React.Dispatch<React.SetStateAction<Task[]>>;
 }
 
 export default function ToDoList({ setCompletedTasks }: ToDoListProps) {
@@ -44,17 +44,24 @@ export default function ToDoList({ setCompletedTasks }: ToDoListProps) {
     const completedTaskIndex = tasks.findIndex((task) => task._id === taskId);
     if (completedTaskIndex !== -1) {
       const completedTask = tasks[completedTaskIndex];
-      setCompletedTasks((prevCompletedTasks) => [
-        ...prevCompletedTasks,
-        completedTask,
-      ]); // Adiciona o objeto Task dentro de um array
-      removeTask(taskId)
-        .then(() => {
-          // Se a remoção for bem-sucedida, atualiza o estado das tarefas
-          setTasks(tasks.filter((task) => task._id !== taskId));
-          console.log(success);
-        })
-        .catch((error) => console.error("Erro ao remover a tarefa:", error));
+      if (setCompletedTasks) {
+        setCompletedTasks((prevCompletedTasks) => [
+          ...prevCompletedTasks,
+          completedTask,
+        ]);
+      }
+
+      // Armazenar a tarefa concluída no armazenamento local do navegador
+      const completedTasksFromLocalStorage = JSON.parse(
+        localStorage.getItem("completedTasks") || "[]"
+      );
+      localStorage.setItem(
+        "completedTasks",
+        JSON.stringify([...completedTasksFromLocalStorage, completedTask])
+      );
+
+      // Atualizar o estado das tarefas para remover a tarefa concluída
+      setTasks((prevTasks) => prevTasks.filter((task) => task._id !== taskId));
     }
   };
 

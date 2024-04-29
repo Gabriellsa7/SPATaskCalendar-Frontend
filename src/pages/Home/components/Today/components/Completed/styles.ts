@@ -15,8 +15,22 @@ export const Container = styled.section`
 
 export const Title = styled.p``;
 
+export const TaskName = styled.p`
+  text-decoration: none;
+  color: black;
+`;
+
 export const SectionCompleted = styled.section`
   margin: 2rem 2rem 2rem 1.5rem;
+`;
+
+export const ButtonRemove = styled.button`
+  background: transparent;
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const CompletedWrapper = styled.div`

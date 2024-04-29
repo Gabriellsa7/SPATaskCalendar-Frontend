@@ -4,16 +4,16 @@ import { MdOutlineCalendarToday } from "react-icons/md";
 import { IoSearchOutline } from "react-icons/io5";
 import { format } from "date-fns";
 import { pt } from "date-fns/locale";
-import ToDoList, { Task } from "./components/ToDoList";
+import ToDoList from "./components/ToDoList";
 import Completed from "./components/Completed";
 import useAddTask from "../../../../hooks/useAddTask";
-import { useState } from "react";
+// import { useState } from "react";
 
 export default function Today() {
   // Gets today's date
   const today = new Date();
 
-  const [completedTasks, setCompletedTasks] = useState<Task[]>([]);
+  // const [completedTasks, setCompletedTasks] = useState<Task[]>([]);
 
   // Formats the date using the desired format with the month in full
   const formattedDate = format(today, "dd MMMM yyyy", { locale: pt });
@@ -57,8 +57,8 @@ export default function Today() {
           <p>{formattedDate}</p>
         </S.Calendar>
       </S.Form>
-      <ToDoList setCompletedTasks={setCompletedTasks} />
-      <Completed completedTasks={completedTasks} />
+      <ToDoList />
+      <Completed />
     </S.Container>
   );
 }
