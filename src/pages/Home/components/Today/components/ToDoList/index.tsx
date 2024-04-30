@@ -34,13 +34,15 @@ export default function ToDoList({
       .catch((error) =>
         console.error("Error when searching for tasks:", error)
       );
-  }, [tasks]);
+  }, []);
 
   const handleRemoveTask = (taskId: string) => {
     removeTask(taskId)
       .then(() => {
         // If the removal is successful, this code will update the local state of the tasks
         setTasks(tasks.filter((task) => task._id !== taskId));
+        console.log("Task removed successfully:", taskId);
+        console.log("Updated tasks:", tasks);
         console.log(success);
       })
       .catch((error) => console.error("Erro ao remover a tarefa:", error));
@@ -76,14 +78,16 @@ export default function ToDoList({
     return new Date(date).toLocaleDateString("pt-BR");
   };
 
-  const tasksToDisplay =
-    filteredTasks.length > 0
-      ? tasks.filter((task) =>
-          filteredTasks.some((filter) =>
-            task.title.toLowerCase().startsWith(filter.title.toLowerCase())
-          )
-        )
-      : tasks;
+  // const tasksToDisplay =
+  //   filteredTasks.length > 0
+  //     ? tasks.filter(() =>
+  //         filteredTasks.some((filter) =>
+  //           filter.title.toLowerCase().startsWith(filter.title.toLowerCase())
+  //         )
+  //       )
+  //     : tasks;
+
+  const tasksToDisplay = filteredTasks.length > 0 ? filteredTasks : tasks;
 
   return (
     <S.Container>
