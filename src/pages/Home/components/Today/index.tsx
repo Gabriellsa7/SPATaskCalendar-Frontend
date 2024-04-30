@@ -8,6 +8,7 @@ import ToDoList from "./components/ToDoList";
 import Completed from "./components/Completed";
 import useAddTask from "../../../../hooks/useAddTask";
 import { ChangeEvent, useEffect, useState } from "react";
+import useViewTitle from "../../../../hooks/useViewTitle";
 
 export interface Task {
   _id: string;
@@ -21,8 +22,8 @@ export interface Task {
 export default function Today() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [search, setSearch] = useState<string>("");
-
   const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
+  const { viewTitle } = useViewTitle();
 
   useEffect(() => {
     // Request to fetch tasks when loading the component
@@ -85,7 +86,7 @@ export default function Today() {
       <S.SectionTop>
         <S.SectionIconTitle>
           <TfiMenuAlt />
-          <S.Title>Day</S.Title>
+          <S.Title>{viewTitle}</S.Title>
         </S.SectionIconTitle>
         <S.SectionSearch>
           <S.Search

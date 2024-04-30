@@ -1,29 +1,42 @@
 import * as S from "./styles";
 import * as I from "./mocks";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import axios from "axios";
+import useViewTitle from "../../../../hooks/useViewTitle";
 
-export default function CalendarSection() {
+interface CalendarSectionProps {
+  setViewTitle?: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export default function CalendarSection({
+  setViewTitle,
+}: CalendarSectionProps) {
   const [selectedItem, setSelectedItem] = useState("day");
   const [taskCounts, setTaskCounts] = useState({ day: 0, week: 0, month: 0 });
+  const { handleViewChange } = useViewTitle();
+
+  const fetchTaskCounts = useCallback(
+    async (view: string) => {
+      try {
+        const response = await axios.get(`/tasks/${view}`);
+        const { day, week, month } = response.data.taskCounts;
+        setTaskCounts({ day, week, month });
+        handleViewChange(view);
+      } catch (error) {
+        console.error("Error when searching for tasks:", error);
+      }
+    },
+    [handleViewChange]
+  );
 
   useEffect(() => {
-    // Function to search for the number of tasks for each period of time
-    const fetchTaskCounts = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/api/tasks/count");
-        if (response.ok) {
-          const data = await response.json();
-          setTaskCounts(data);
-        } else {
-          console.error("Failed to fetch task counts");
-        }
-      } catch (error) {
-        console.error("Error fetching task counts:", error);
-      }
-    };
+    fetchTaskCounts(selectedItem);
+  }, [selectedItem, fetchTaskCounts]);
 
-    fetchTaskCounts();
-  }, []);
+  const handleSelectedItemChange = (item: string) => {
+    setSelectedItem(item);
+    setViewTitle && setViewTitle(item);
+  };
 
   return (
     <S.Container>
@@ -33,7 +46,7 @@ export default function CalendarSection() {
       </S.IconSection>
       <S.CalendarSection
         className={selectedItem === "day" ? "selected" : ""}
-        onClick={() => setSelectedItem("day")}
+        onClick={() => handleSelectedItemChange("day")}
       >
         <S.IconSection>
           <I.MdOutlineCalendarToday size={25} />
@@ -43,7 +56,7 @@ export default function CalendarSection() {
       </S.CalendarSection>
       <S.CalendarSection
         className={selectedItem === "week" ? "selected" : ""}
-        onClick={() => setSelectedItem("week")}
+        onClick={() => handleSelectedItemChange("week")}
       >
         <S.IconSection>
           <I.LuSunrise size={25} />
@@ -53,7 +66,7 @@ export default function CalendarSection() {
       </S.CalendarSection>
       <S.CalendarSection
         className={selectedItem === "month" ? "selected" : ""}
-        onClick={() => setSelectedItem("month")}
+        onClick={() => handleSelectedItemChange("month")}
       >
         <S.IconSection>
           <I.TbArrowsCross size={25} />
