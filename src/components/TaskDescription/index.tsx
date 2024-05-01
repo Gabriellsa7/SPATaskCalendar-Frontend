@@ -103,10 +103,14 @@ export default function TaskDescription() {
               value={editingTitle}
               onChange={(e) => setEditingTitle(e.target.value)}
             />
-            <S.Button onClick={handleSaveTitleClick}>Save Title</S.Button>
+            <S.ButtonAddTitle onClick={handleSaveTitleClick}>
+              Save Title
+            </S.ButtonAddTitle>
           </S.Form>
         ) : (
-          <S.Button onClick={handleEditTitleClick}>Edit Title</S.Button>
+          <S.ButtonAddTitle onClick={handleEditTitleClick}>
+            Edit Title
+          </S.ButtonAddTitle>
         )}
       </S.SectionIconTitle>
       <S.DescriptionSection>
