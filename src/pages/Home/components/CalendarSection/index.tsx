@@ -26,6 +26,7 @@ export default function CalendarSection({
         console.error("Error when searching for tasks:", error);
       }
     },
+
     [handleViewChange]
   );
 
@@ -36,6 +37,7 @@ export default function CalendarSection({
   const handleSelectedItemChange = (item: string) => {
     setSelectedItem(item);
     setViewTitle && setViewTitle(item);
+    handleViewChange(item);
   };
 
   return (
