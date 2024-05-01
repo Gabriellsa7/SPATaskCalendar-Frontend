@@ -19,7 +19,7 @@ export default function CalendarSection({
     async (view: string) => {
       try {
         const response = await axios.get(`/tasks/${view}`);
-        const { day, week, month } = response.data.taskCounts;
+        const { day, week, month } = response.data;
         setTaskCounts({ day, week, month });
         handleViewChange(view);
       } catch (error) {
