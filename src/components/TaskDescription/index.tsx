@@ -57,7 +57,9 @@ export default function TaskDescription() {
   }, [task, handleDescriptionChange]);
 
   const handleAddDescriptionClick = () => {
+    setIsEditingDescription(true);
     setIsAddingDescription(true);
+    setEditingDescription("");
   };
 
   const handleEditDescriptionClick = () => {
@@ -109,7 +111,7 @@ export default function TaskDescription() {
       </S.SectionIconTitle>
       <S.DescriptionSection>
         {isAddingDescription ? (
-          <S.Form>
+          <>
             <S.TextArea
               value={editingDescription}
               onChange={(e) => setEditingDescription(e.target.value)}
@@ -118,7 +120,7 @@ export default function TaskDescription() {
             <S.Button onClick={handleSaveDescriptionClick}>
               <p>{isEditingDescription ? "Save" : "Add"}</p>
             </S.Button>
-          </S.Form>
+          </>
         ) : (
           <>
             <S.Button onClick={handleAddDescriptionClick}>
