@@ -4,7 +4,7 @@ const useViewTitle = () => {
   const [viewTitle, setViewTitle] = useState<string>("Day");
 
   const handleViewChange = (view: string) => {
-    switch (view) {
+    switch (view.toLowerCase()) {
       case "day":
         setViewTitle("Day");
         break;
