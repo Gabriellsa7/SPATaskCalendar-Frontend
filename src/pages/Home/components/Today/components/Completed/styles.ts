@@ -34,7 +34,7 @@ export const ButtonRemove = styled.button`
 `;
 
 export const CompletedWrapper = styled.div`
-  max-height: 200px;
+  max-height: 12.5rem;
   overflow-y: auto;
 `;
 
@@ -42,6 +42,8 @@ export const Task = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
+  padding: 10px;
 `;
 
 export const SectionIconText = styled.div`
