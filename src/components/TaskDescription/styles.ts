@@ -91,3 +91,19 @@ export const Button = styled.button`
     border-radius: 10px;
   }
 `;
+
+export const ButtonAddTitle = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.25rem;
+  border: none;
+  border-radius: 10px;
+  background-color: #c0c0c0;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #dfdfdf;
+    border-radius: 10px;
+  }
+`;
